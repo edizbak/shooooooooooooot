@@ -63,7 +63,8 @@ function hitTest() {
 var remove = false;
   for (var i = 0; i < lasers.length; i++) {
     for (var j = 0; j < enemies.length; j++) {
-      if (lasers[i][1] <= (enemies[j][1] + enemies[j][3]) && lasers[i][0] >= enemies[j][0] && lasers[i][0] <= (enemies[j][0] + enemies[j][2])) {
+      // TODO : verfier que l'ennemi est bien devant
+      if (lasers[i][1] < (enemies[j][1] + enemies[j][3]) && lasers[i][0] >= enemies[j][0] && lasers[i][0] <= (enemies[j][0] + enemies[j][2])) {
         remove = true;
         temp_x = enemies[j][0];
         temp_y = enemies[j][1];
@@ -71,7 +72,9 @@ var remove = false;
         temp_h = enemies[j][3];
         bonuses.push([temp_x, temp_y, temp_w, temp_h, speed]);
         enemies.splice(j, 1);
+        score+= 10;
         enemies.push([(Math.random() * 500) + 50, -45, enemy_w, enemy_h, speed]);
+        //break;
       }
     }
     if (remove == true) {

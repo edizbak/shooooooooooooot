@@ -7,6 +7,7 @@ ship_y = height - 75,
 ship_w = 50, 
 ship_h = 50,
 ship;
+
 var laserTotal = 2, lasers = [];
 var laserTotal2 = 2, lasers2 = [];
 function drawShip() {
@@ -55,4 +56,32 @@ function drawLaser2() {
       }
     }
   }
+  
+    function shipCollisionBonus() {
+      var ship_xw = ship_x + ship_w,
+          ship_yh = ship_y + ship_h;
+       for (var i =0; i < enemies.length; i++){
+        if (ship_x > bonuses[i][0] && ship_x < bonuses[i][0] + bonus_w && ship_y > bonuses[i][1] && ship_y < bonuses[i][1] + bonus_h) {
+          bonuses.splice(i,1);
+        };
+         if (ship_xw < bonuses[i][0] + bonus_w && ship_xw > bonuses[i][0] && ship_y > bonuses[i][1] && ship_y < bonuses[i][1] + bonus_h) {
+          bonuses.splice(i,1);
+         };
+        if (ship_yh > bonuses[i][1] && ship_yh < bonuses[i][1] + bonus_h && ship_x > bonuses[i][0] && ship_x < bonuses[i][0] + bonus_w){
+          bonuses.splice(i,1); 
+        };       
+       if (ship_yh > bonuses[i][1] && ship_yh < bonuses[i][1] + bonus_h && ship_xw < bonuses[i][0] + bonus_w && ship_xw > bonuses[i][0]){
+        bonuses.splice(i,1); 
+       };
+    }
+  }
 
+  function checkLives() {
+    lives -= 1;
+    if (lives > 0) {
+      reset();
+    } else if (lives == 0) {
+      alive = false;
+    }
+   }
+  
