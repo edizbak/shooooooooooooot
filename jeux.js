@@ -55,7 +55,9 @@ function init() {
   ship = new Image();
   ship.src = 'assets/ship.png';
   bonus = new Image();
-  bonus.src = 'assets/bonusBomb.png'
+  bonus.src = 'assets/bonusBomb.png';
+  starfield = new Image();
+  starfield.src = 'assets/starfield.jpg';
   setInterval(gameLoop, 25);
   document.addEventListener('keydown', keyDown, false);
   document.addEventListener('keyup', keyUp, false);
@@ -63,6 +65,7 @@ function init() {
 
 function gameLoop() {
   clearCanvas();
+  drawStarfield();
   playSong();
   scoreTotal();
     hitTest();
