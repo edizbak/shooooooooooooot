@@ -8,9 +8,9 @@ var canvas,
     bonuses = [],
     alive=true,
     musique = new Audio('assets/SweetDreams.mp3'),
-    hitSong = new Audio("hit.wav"),
-    shootSong = new Audio("shoot.wav"),
-    bonusSong = new Audio("bonus.wav"),
+    hitSong = new Audio("assets/hit.mp3"),
+    shootSong = new Audio("assets/shoot2.wav"),
+    bonusSong = new Audio("assets/bonus.mp3"),
     score = 0;
 //TODO : Ajouter des sons et une musique en fond (demande de FX) plus important qu'une interface selon lui, et plus intéressant à présenter
 function clearCanvas() {
@@ -18,14 +18,12 @@ function clearCanvas() {
 }
 
 function scoreTotal() {
-  console.log("ctx");
   ctx.font = 'bold 18px Arial';
   ctx.fillStyle = '#fff';
   ctx.fillText('Score: ', 490,30);
   ctx.fillText(score, 550,30);
 }
 function playSong (){
-  musique.volume=2;
   musique.play();
 }
 function drawBonuses() {
@@ -71,14 +69,12 @@ function gameLoop() {
     moveEnemies();
     moveLaser();
     moveBonuses();
-    moveLaser2();
     drawEnemies();
     drawShip();
     drawLaser();
     drawBonuses();
-    drawLaser2();
-    spawnEnemy();
     shipCollisionBonus();
+    spawnEnemy();
 }
 
 function keyDown(e) {
