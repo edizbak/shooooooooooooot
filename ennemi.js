@@ -26,6 +26,7 @@ var enemyTotal = 5,
  enemy_x += enemy_w + 60;
     }   
 }
+
 function drawEnemies() {
 for (var i = 0; i < enemies.length; i++) {
     ctx.drawImage(enemy, enemies[i][0], enemies[i][1]);
@@ -64,14 +65,16 @@ var remove = false;
   for (var i = 0; i < lasers.length; i++) {
     for (var j = 0; j < enemies.length; j++) {
       // TODO : verfier que l'ennemi est bien devant
-      if (lasers[i][1] < (enemies[j][1] + enemies[j][3]) && lasers[i][0] >= enemies[j][0] && lasers[i][0] <= (enemies[j][0] + enemies[j][2])) {
+      if (lasers[i][1] <= (enemies[j][1] + enemies[j][3]) && lasers[i][0] >= enemies[j][0] && lasers[i][0] <= (enemies[j][0] + enemies[j][2]) && 
+      lasers[i][1] >= (enemies[j][1] + 10)) {
         remove = true;
         temp_x = enemies[j][0];
         temp_y = enemies[j][1];
         temp_w = enemies[j][2];
         temp_h = enemies[j][3];
-        bonuses.push([temp_x, temp_y, temp_w, temp_h, speed]);
+        var bonusSpawn = bonuses.push([temp_x, temp_y, temp_w, temp_h, speed]);
         enemies.splice(j, 1);
+        hitSong.play();
         score+= 10;
         enemies.push([(Math.random() * 500) + 50, -45, enemy_w, enemy_h, speed]);
         //break;
