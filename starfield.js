@@ -13,4 +13,4 @@ function drawStarfield() {
   }
   starY += 1;
   starY2 += 1;
-}
+} 

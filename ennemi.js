@@ -1,4 +1,3 @@
-
 var enemyTotal = 5,
   enemies = [],
   enemy_x = 50,
@@ -12,6 +11,7 @@ var enemyTotal = 5,
     enemies.push([enemy_x, enemy_y, enemy_w, enemy_h, speed]);
     enemy_x += enemy_w + 60;
    }
+   
   function enemy(id,enemy_x,enemy_y,enemy_w, enemy_h) {
     this.id = id;
     this.enemy_x = enemy_x;
@@ -42,19 +42,6 @@ function moveEnemies() {
     }
   }
 }
-function init() {
-  canvas = document.getElementById('canvas');
-  ctx = canvas.getContext('2d');
-  enemy = new Image();
-  enemy.src = 'assets/8bit_enemy.png';
-  ship = new Image();
-  ship.src = 'assets/ship.png';
-  bonus = new Image();
-  bonus.src = 'assets/bonusBomb.png'
-  setInterval(gameLoop, 25);
-  document.addEventListener('keydown', keyDown, false);
-  document.addEventListener('keyup', keyUp, false);
-}
 
 function hitTest() {
   var temp_x,
@@ -77,7 +64,7 @@ var remove = false;
         hitSong.play();
         score+= 10;
         enemies.push([(Math.random() * 500) + 50, -45, enemy_w, enemy_h, speed]);
-        //break;
+        break;
       }
     }
     if (remove == true) {
