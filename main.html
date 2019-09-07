@@ -16,16 +16,27 @@ canvas {
   border:1px dashed #ccc;
   background:#000;
 }
+#playerName{
+	position: absolute;
+	left: 289px;
+	top: 335px;
+	width: 100px;
+	visibility: hidden;
+}
 </style>
 <script type="text/javascript" src="jeux.js"></script>
 <script type="text/javascript" src="ennemi.js"></script>
 <script type="text/javascript" src="ship.js"></script>
 <script type="text/javascript" src="starfield.js"></script>
 <script type="text/javascript" src="song.js"></script>
+<script type="text/javascript" src="scoring.js"></script>
 
 </head>
 
 <body>
   <canvas id="canvas" width="600" height="600"></canvas>
+  <div id="playerName">
+  	<input type="text" name="player">
+  </div>
 </body>
 </html>

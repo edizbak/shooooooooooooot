@@ -6,12 +6,15 @@ var canvas,
     bonus_h = 50,
     bonuses = [],
     alive=true,
-    lives = 3,
+    lives = 1,
     gameStarted = false,
-    score = 0;
+    score = 0,
+    submitting = false;
+
 //TODO : Ajouter des sons et une musique en fond (demande de FX) plus important qu'une interface selon lui, et plus intéressant à présenter
 function clearCanvas() {
  ctx.clearRect(0,0,width,height);
+ console.log('cleared');
 }
 
 function playSong (){
@@ -34,7 +37,7 @@ function scoreTotal() {
   ctx.fillText(lives, 68, 30);
   if (!gameStarted) {
     ctx.font = 'bold 50px VT323';
-    ctx.fillText('Best Shooter 3000', width / 2 - 170, height / 2);
+    ctx.fillText('Best Shooter 4000', width / 2 - 170, height / 2);
     ctx.font = 'bold 20px VT323';
     ctx.fillText('Click to Play', width / 2 - 55, height / 2 + 30);
     ctx.fillText('Use arrow keys to move', width / 2 - 90, height / 2 + 60);
@@ -42,14 +45,32 @@ function scoreTotal() {
     startSong.loop = false;
     startSong.play();
   }
-  if (!alive) {
+  if (!alive && !submitting) {
     ctx.fillText('Game Over !', 245, height / 2);
     ctx.fillRect((width / 2) - 60, (height / 2) + 10,100,40);
     ctx.fillStyle = '#000';
     ctx.fillText('Retry ?', 260, (height / 2) + 35);
+    ctx.fillStyle = '#fff';
+    ctx.fillRect((width / 2) - 60, (height / 2) + 60,100,40);
+    ctx.fillStyle = '#000';
+    ctx.fillText('Submit score', 245, (height / 2) + 85);
     canvas.addEventListener('click', retryButton, false);
+    canvas.addEventListener('click', submitButton, false);
+  }
+  if (submitting){
+    ctx.fillText('Your name ?', 245, height / 2);
+    ctx.fillRect((width / 2) - 60, (height / 2) + 60,100,40);
+    ctx.fillStyle = '#000';
+    ctx.fillText('Submit', 260, (height / 2) + 85);    
+    canvas.addEventListener('click', submitButton, false);
+    canvas.addEventListener('click', getCursor, false);
+    
   }
  }
+
+function getCursor(e){
+  console.log(getCursorPos(e));
+}
 
 function retryButton(e) {
   var cursorPos = getCursorPos(e);
@@ -59,6 +80,21 @@ function retryButton(e) {
     score = 0;
     reset();
     canvas.removeEventListener('click', retryButton, false);
+    canvas.removeEventListener('click', submitButton, false);
+  }
+ }
+
+ function submitButton(e) {
+  var cursorPos = getCursorPos(e);
+  if (cursorPos.x > (width / 2) - 53 && cursorPos.x < (width / 2) + 47 && cursorPos.y > (height / 2) + 60 && cursorPos.y < (height / 2) + 100) {
+    canvas.removeEventListener('click', submitButton, false);
+    canvas.removeEventListener('click', retryButton, false);
+  if (!submitting){
+    document.getElementById('playerName').style.visibility = 'visible';
+    submitting = true;
+  } else {
+    submitting = false;
+  }
   }
  }
  
@@ -156,7 +192,6 @@ function gameLoop() {
     drawBonuses();
     shipCollision();
     shipCollisionBonus();
-    spawnEnemy();
 }
 scoreTotal();
 game = setTimeout(gameLoop, 1000 / 30);
