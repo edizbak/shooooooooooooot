@@ -1,0 +1,397 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"mont",
+				"montantTotal"
+			],
+			[
+				"se",
+				"selected"
+			],
+			[
+				"option",
+				"options"
+			],
+			[
+				"sel",
+				"selectedIndex"
+			],
+			[
+				"bu",
+				"burgers"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"id",
+				"idBurgerChoisi"
+			],
+			[
+				"ge",
+				"getElementById"
+			],
+			[
+				"wr",
+				"flex-wrap\tproperty"
+			],
+			[
+				"ov",
+				"overflow\tproperty"
+			],
+			[
+				"bt",
+				"btn-info"
+			],
+			[
+				"col",
+				"col-md-9"
+			],
+			[
+				"co",
+				"col-md-3"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"l",
+				"lang\tAttr"
+			],
+			[
+				"fon",
+				"font-size\tproperty"
+			],
+			[
+				"pa",
+				"padding-left\tproperty"
+			],
+			[
+				"no",
+				"nowrap\twhite-space"
+			],
+			[
+				"li",
+				"list-style\tproperty"
+			],
+			[
+				"fo",
+				"font-size\tproperty"
+			],
+			[
+				"con",
+				"contact_form"
+			],
+			[
+				"back",
+				"background-color\tproperty"
+			],
+			[
+				"brea",
+				"word-break\tproperty"
+			],
+			[
+				"op",
+				"option\tTag"
+			],
+			[
+				"ac",
+				"action\tAttr"
+			],
+			[
+				"in",
+				"input\tTag"
+			],
+			[
+				"max",
+				"max-width\tproperty"
+			],
+			[
+				"inlin",
+				"inline-block\tdisplay"
+			],
+			[
+				"bor",
+				"border-left\tproperty"
+			],
+			[
+				"te",
+				"text-decoration\tproperty"
+			],
+			[
+				"i",
+				"img\tTag"
+			],
+			[
+				"bord",
+				"border-collapse\tproperty"
+			],
+			[
+				"h",
+				"height\tproperty"
+			],
+			[
+				"font-",
+				"font-style\tproperty"
+			],
+			[
+				"mar",
+				"margin\tproperty"
+			],
+			[
+				"wid",
+				"width\tproperty"
+			],
+			[
+				"bac",
+				"background-color\tproperty"
+			],
+			[
+				"ba",
+				"background-color\tproperty"
+			],
+			[
+				"font",
+				"font-family\tproperty"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"re",
+				"req"
+			],
+			[
+				"f",
+				"function"
+			],
+			[
+				"o",
+				"option\tTag"
+			],
+			[
+				"met",
+				"meta\tTag"
+			],
+			[
+				"c",
+				"content\tAttr"
+			],
+			[
+				"th",
+				"thead\tTag"
+			],
+			[
+				"t",
+				"tfoot\tTag"
+			],
+			[
+				"me",
+				"meta\tTag"
+			],
+			[
+				"u",
+				"ul\tTag"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Docs/technoWeb/css/commande.css",
+		"/C/Docs/technoWeb/commande.html",
+		"/C/Users/HB/Downloads/shooter2D/keyLogger.js",
+		"/C/Users/HB/Downloads/shooter2D/index.html",
+		"/C/Users/HB/Downloads/shooter2D/targets.js",
+		"/C/Users/HB/Downloads/shooter2D/bullets.js",
+		"/C/Users/HB/Downloads/shooter2D/main.js",
+		"/C/Docs/technoWeb/1st.html",
+		"/C/Docs/technoWeb/bootstest.html",
+		"/C/Docs/technoWeb/carousel.html",
+		"/C/Docs/technoWeb/form_simple.html",
+		"/C/Docs/technoWeb/css/pizza.css",
+		"/C/Docs/technoWeb/pizza.html",
+		"/C/Docs/technoWeb/test1/views/2nd.html",
+		"/C/Docs/technoWeb/css/pfit.css",
+		"/C/Docs/technoWeb/pfit2.html",
+		"/C/Docs/technoWeb/css/style.css",
+		"/C/Docs/technoWeb/flag.html",
+		"/C/Docs/technoWeb/entete_pfit.html",
+		"/C/Docs/technoWeb/tab_simple.html",
+		"/C/Docs/technoWeb/test1/package.json",
+		"/C/Docs/technoWeb/2nd.html",
+		"/C/Docs/technoWeb/test1/server.js",
+		"/C/Docs/technoWeb/chaussures.html",
+		"/C/Docs/technoWeb/test1/views/about.html",
+		"/C/Docs/technoWeb/releve_meteo.html",
+		"/C/Docs/technoWeb/dejeuner.html",
+		"/C/Docs/new_node_app/nodification/app.js",
+		"/C/Docs/new_node_app/nodification/routes/index.js",
+		"/C/Docs/new_node_app/nodification/Gruntfile.js",
+		"/C/Docs/new_node_app/nodification/views/layout.jade"
+	],
+	"find":
+	{
+		"height": 49.0
+	},
+	"find_in_files":
+	{
+		"height": 131.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"radio",
+			"><",
+			"tr",
+			"MacDo",
+			"html",
+			"}\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 37.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "shoot.sublime-project",
+	"replace":
+	{
+		"height": 70.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 105.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,258 @@
+var canvas,
+    ctx,
+    width = 600,
+    height = 600,
+    bonus_w = 50,
+    bonus_h = 50,
+    bonuses = [],
+    alive=true,
+    lives = 3,
+    gameStarted = false,
+    score = 0,
+    submitting = false;
+
+//TODO : Ajouter des sons et une musique en fond (demande de FX) plus important qu'une interface selon lui, et plus intéressant à présenter
+function clearCanvas() {
+ ctx.clearRect(0,0,width,height);
+ console.log('cleared');
+}
+
+function playSong (){
+  musique.play();
+}
+
+function gameStart() {
+  startSong.pause();
+  startSong.currentTime = 0;
+ gameStarted = true;
+ canvas.removeEventListener('click', gameStart, false);
+}
+
+function scoreTotal() {
+  ctx.font = 'bold 18px VT323';
+  ctx.fillStyle = '#fff';
+  ctx.fillText('Score: ', 490, 30);
+  ctx.fillText(score, 550, 30);
+  ctx.fillText('Lives:', 10, 30);
+  ctx.fillText(lives, 68, 30);
+  if (!gameStarted) {
+    ctx.font = 'bold 50px VT323';
+    ctx.fillText('Best Shooter 4000', width / 2 - 170, height / 2);
+    ctx.font = 'bold 20px VT323';
+    ctx.fillText('Click to Play', width / 2 - 55, height / 2 + 30);
+    ctx.fillText('Use arrow keys to move', width / 2 - 90, height / 2 + 60);
+    ctx.fillText('Use the x key to shoot', width / 2 - 90, height / 2 + 90);
+    startSong.loop = false;
+    startSong.play();
+  }
+  if (!alive && !submitting) {
+    ctx.fillText('Game Over !', 245, height / 2);
+    ctx.fillRect((width / 2) - 60, (height / 2) + 10,100,40);
+    ctx.fillStyle = '#000';
+    ctx.fillText('Retry ?', 260, (height / 2) + 35);
+    ctx.fillStyle = '#fff';
+    ctx.fillRect((width / 2) - 60, (height / 2) + 60,100,40);
+    ctx.fillStyle = '#000';
+    ctx.fillText('Submit score', 245, (height / 2) + 85);
+    ctx.fillStyle = '#fff';
+    ctx.fillRect((width / 2) - 60, (height / 2) + 110,100,40);
+    ctx.fillStyle = '#000';
+    ctx.fillText('Hall of Fame', 245, (height / 2) + 135);
+    canvas.addEventListener('click', retryButton, false);
+    canvas.addEventListener('click', submitButton, false);
+    canvas.addEventListener('click', showHighButton, false);
+  }
+  if (submitting){
+    ctx.fillText('Your name ?', 245, height / 2);
+    ctx.fillRect((width / 2) - 60, (height / 2) + 60,100,40);
+    ctx.fillStyle = '#000';
+    ctx.fillText('Submit', 260, (height / 2) + 85);    
+    canvas.addEventListener('click', submitButton, false);
+    canvas.addEventListener('click', getCursor, false);
+    
+  }
+ }
+
+function getCursor(e){
+  console.log(getCursorPos(e));
+}
+
+function retryButton(e) {
+  var cursorPos = getCursorPos(e);
+  if (cursorPos.x > (width / 2) - 53 && cursorPos.x < (width / 2) + 47 && cursorPos.y > (height / 2) + 10 && cursorPos.y < (height / 2) + 50) {
+    alive = true;
+    lives = 3;
+    score = 0;
+    reset();
+    canvas.removeEventListener('click', retryButton, false);
+    canvas.removeEventListener('click', submitButton, false);
+    canvas.removeEventListener('click', showHighButton, false);
+  }
+ }
+
+function showHighButton(e) {
+  var cursorPos = getCursorPos(e);
+  if (cursorPos.x > (width / 2) - 53 && cursorPos.x < (width / 2) + 47 && cursorPos.y > (height / 2) + 110 && cursorPos.y < (height / 2) + 160) {
+    var request = new XMLHttpRequest();
+    request.open('GET', 'joueursTries', true);
+    request.onload = function(){
+      var data = JSON.parse(this.response);
+      $('#hallOfFameBody').html("");
+      if (request.status >= 200 && request.status < 400) {
+        for (player of data) {
+          $('#hallOfFameBody').append("<tr id='player" + player.id + "'>");
+          $("#player" + player.id).append("<td id='colNom" + player.id + "'>")
+                                  .append("<td id='colScore" + player.id + "'>");
+          $("#colNom" + player.id).html(player.pseudo);
+          $("#colScore" + player.id).html(player.meilleurScore);
+        }
+      } else {
+        console.log("No scores to fetch");
+      }
+    }
+    request.send();
+    $("#hallOfFame").modal();
+    canvas.removeEventListener('click', retryButton, false);
+    canvas.removeEventListener('click', submitButton, false);
+    canvas.removeEventListener('click', showHighButton, false);
+  }
+ }
+
+ function submitButton(e) {
+  var cursorPos = getCursorPos(e);
+  if (cursorPos.x > (width / 2) - 53 && cursorPos.x < (width / 2) + 47 && cursorPos.y > (height / 2) + 60 && cursorPos.y < (height / 2) + 100) {
+    canvas.removeEventListener('click', submitButton, false);
+    canvas.removeEventListener('click', retryButton, false);
+    canvas.removeEventListener('click', showHighButton, false);
+  if (!submitting){
+    document.getElementById('playerName').style.visibility = 'visible';
+    submitting = true;
+  } else {
+    var req = new XMLHttpRequest();
+    var nom = $("#playName").val();
+    req.open('POST', 'joueurs/' + nom + '/' + score, true);
+    req.onload = function(){
+      if (req.status >= 200) { window.alert('Your bravery will me remembered ' + nom + ' !'); }
+    }
+    req.send();
+    submitting = false;
+    document.getElementById('playerName').style.visibility = 'hidden';
+  }
+  }
+ }
+ 
+ function cursorPosition(x,y) {
+  this.x = x;
+  this.y = y;
+ }
+
+ function getCursorPos(e) {
+  var x;
+  var y;
+  if (e.pageX || e.pageY) {
+    x = e.pageX;
+    y = e.pageY;
+  } else {
+    x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+    y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+  }
+  x -= canvas.offsetLeft;
+  y -= canvas.offsetTop;
+  var cursorPos = new cursorPosition(x, y);
+  return cursorPos;
+ }
+
+function drawBonuses() {
+ for (var i = 0; i < bonuses.length; i++) {
+      ctx.drawImage(bonus, bonuses[i][0], bonuses[i][1]);
+ }
+}
+
+function moveBonuses() {
+  for (var i = 0; i < bonuses.length; i++) {
+   if (bonuses[i][1] < height) {
+     bonuses[i][1] += bonuses[i][4];
+   } else if (bonuses[i][1] > height - 1) {
+      bonuses.splice(i, 1);
+    }
+  }
+}
+
+function checkLives() {
+  lives -= 1;
+  if (lives > 0) {
+    reset();
+  } else if (lives == 0) {
+    alive = false;
+    loseSong.play();
+    musique.pause();
+    musique.currentTime = 0;
+  }
+ }
+ 
+ function reset() {
+  var enemy_reset_x = 50;
+  ship_x = (width / 2) - 25, ship_y = height - 75, ship_w = 50, ship_h = 57;
+  for (var i = 0; i < enemies.length; i++) {
+    enemies[i][0] = enemy_reset_x;
+    enemies[i][1] = -45;
+    enemy_reset_x = enemy_reset_x + enemy_w + 60;
+    bonuses.splice(i,1);
+  }
+ }
+
+function init() {
+  canvas = document.getElementById('canvas');
+  ctx = canvas.getContext('2d');
+  enemy = new Image();
+  enemy.src = 'assets/8bit_enemy.gif';
+  ship = new Image();
+  ship.src = 'assets/ship.gif';
+  bonus = new Image();
+  bonus.src = 'assets/bonusS.gif';
+  starfield = new Image();
+  starfield.src = 'assets/starfield.jpg';
+  //setInterval(gameLoop, 25);
+  document.addEventListener('keydown', keyDown, false);
+  document.addEventListener('keyup', keyUp, false);
+  canvas.addEventListener('click', gameStart, false);
+  gameLoop();
+}
+
+function gameLoop() {
+  clearCanvas();
+  drawStarfield();
+  if (alive && gameStarted && lives > 0) {
+  playSong();
+  scoreTotal();
+    hitTest();
+    moveEnemies();
+    moveLaser();
+    moveBonuses();
+    drawEnemies();
+    drawShip();
+    drawLaser();
+    drawBonuses();
+    shipCollision();
+    shipCollisionBonus();
+}
+scoreTotal();
+game = setTimeout(gameLoop, 1000 / 30);
+}
+
+function keyDown(e) {
+  if (e.keyCode == 39) rightKey = true;
+  else if (e.keyCode == 37) leftKey = true;
+  if (e.keyCode == 38) upKey = true;
+  else if (e.keyCode == 40) downKey = true;
+  if (e.keyCode == 88 && lasers.length <= laserTotal) {lasers.push([ship_x + 25, ship_y - 10, 4, 20]); lasers2.push([ship_x + 25, ship_y + 40, 4, 20]);shootSong.play()}
+}
+
+function keyUp(e) {
+  if (e.keyCode == 39) rightKey = false;
+  else if (e.keyCode == 37) leftKey = false;
+  if (e.keyCode == 38) upKey = false;
+  else if (e.keyCode == 40) downKey = false;
+}
+
+window.onload = init;
